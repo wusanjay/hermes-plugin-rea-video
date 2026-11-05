@@ -1,0 +1,173 @@
+<!doctype html><html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>拆解：大瑞Keaton-Grokbot-BOT生意.mp4</title>
+<style>
+:root{--bg:#fafaf9;--fg:#1c1917;--muted:#78716c;--card:#fff;--line:#e7e5e4}
+@media (prefers-color-scheme:dark){:root{--bg:#1c1917;--fg:#f5f5f4;--muted:#a8a29e;--card:#292524;--line:#44403c}}
+body{margin:0;padding:24px 16px;background:var(--bg);color:var(--fg);font:15px/1.6 -apple-system,"PingFang SC","Noto Sans CJK SC",sans-serif}
+main{max-width:1100px;margin:auto} h1{font-size:22px} .muted{color:var(--muted)}
+.mix{display:flex;height:30px;border-radius:6px;overflow:hidden;margin:12px 0} .bar{color:#fff;font-size:12px;padding:6px;white-space:nowrap;overflow:hidden}
+.shot{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;margin:14px 0}
+.shot img{max-width:100%;border-radius:6px;margin:8px 0} .badge{color:#fff;border-radius:4px;padding:2px 8px;margin-right:8px;font-size:13px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:16px} @media (max-width:700px){.cols{grid-template-columns:1fr}}
+h4{margin:6px 0 2px;font-size:13px;color:var(--muted)} ul{margin:0;padding-left:18px} .prompt{background:var(--bg);padding:8px;border-radius:6px;font-size:13px}
+img.sb{max-width:100%;border-radius:8px} .real{background:#0d9488;color:#fff;border-radius:4px;padding:2px 8px;margin-left:8px;font-size:12px}
+</style></head><body><main>
+<h1>视频拆解：大瑞Keaton-Grokbot-BOT生意.mp4</h1>
+<p><b>结论：</b>混合制作：代码/模板渲染 69% + AI 生成视频 20% + 3D 渲染 11%；叠加层：图形贴片（代码/剪辑软件合成）；声音：人声 + 音效 21 处</p>
+
+<p class="muted">122.9s · 3840×2160 · 30.0fps · 15 个镜头 · 置信度 63% ·
+未开 VLM；实拍/AI/3D 的区分只靠像素统计，可信度有限。能看图的 agent：运行 rea-video review 逐镜看图并 apply-review 并入；否则建议配置 VLM（任意 OpenAI 兼容的多模态模型，如 Gemini / GPT-4o / 豆包 / Qwen-VL）：设置 REA_VLM_BASE_URL、REA_VLM_API_KEY、REA_VLM_MODEL（可写多个模型逗号分隔做备选），再加 --vlm 重跑</p>
+<div class="mix"><div class='bar' style='flex:0.691;background:rgb(245,158,11)' title='代码/模板渲染'>代码/模板渲染 69%</div><div class='bar' style='flex:0.203;background:rgb(217,70,239)' title='AI 生成视频'>AI 生成视频 20%</div><div class='bar' style='flex:0.106;background:rgb(14,165,233)' title='3D 渲染'>3D 渲染 11%</div></div>
+<img class="sb" src="storyboard.jpg">
+<section class='shot'><h3 style='margin:4px 0'>复刻方案</h3><p><b>AI 视频 8 镜 + 3D 渲染 3 镜 → 7 个生成单元、7 次 Seedance 2.5 调用；代码渲染/录屏 4 镜 → 1 个代码工程（3 段）</b></p><p class='muted'>默认引擎 Seedance 2.0（含 Mini / Fast） 不支持一次多镜头，用它要逐镜生成 11 次；这里按 Seedance 2.5 规划（单次 ≤30s、可一次出多镜头），共 7 次</p><p class='muted'>声音：模型可以同时生成动作音效和环境声；口播建议单独 TTS 再混进去，方便改文案和卡时间</p><h4>G1 · AI 生成视频 · 镜头 #1 · 0.0–3.8s（3.8s）</h4><ul><li><code>@图片1</code> 人物参考图（每个角色一张正脸 + 半身），保证跨镜头长相一致</li><li><code>@视频1</code> 原片 0.0–3.8s 片段：参考动作、运镜和剪辑节奏（只作参考，不复制画面）</li></ul><p class='muted'>首帧：参照原片第 1 镜首帧（shots/shot_001_first.jpg）的构图出图</p><pre class='prompt' style='white-space:pre-wrap'>横屏 16:9；夜景/弱光环境光，没有专门补光，柔光（明暗过渡宽），中性（约 5000K），背景明显虚化（浅景深/人像模式）。人物以 @图片1 为准。参考 @视频1 的动作、运镜和剪辑节奏。
+（缺提示词：开 --vlm 或 agent 看图补写）</pre><h4>G2 · 3D 渲染 · 镜头 #2 · 3.8–6.7s（2.8s）</h4><ul><li><code>@图片1</code> 人物参考图（每个角色一张正脸 + 半身），保证跨镜头长相一致</li><li><code>@视频1</code> 原片 3.8–6.7s 片段：参考动作、运镜和剪辑节奏（只作参考，不复制画面）</li></ul><p class='muted'>首帧：参照原片第 2 镜首帧（shots/shot_002_first.jpg）的构图出图</p><p class='muted'>生成 4s 后剪到 2.8s（太短的镜头单独生成不稳定）</p><p class='muted'>另一条路：3D 工程。让 LLM 写 Blender 脚本或 Three.js 场景，角色/道具建模一次、按镜头设机位渲染，多角度和角色一致性最好，改文案和镜头也只是改代码（R08）</p><pre class='prompt' style='white-space:pre-wrap'>横屏 16:9；夜景/弱光环境光，没有专门补光，柔光（明暗过渡宽），中性（约 5000K），背景明显虚化（浅景深/人像模式）。人物以 @图片1 为准。参考 @视频1 的动作、运镜和剪辑节奏。
+（缺提示词：开 --vlm 或 agent 看图补写）</pre><h4>G3 · 3D 渲染 · 镜头 #3 · 6.7–9.4s（2.8s）</h4><ul><li><code>@图片1</code> 人物参考图（每个角色一张正脸 + 半身），保证跨镜头长相一致</li><li><code>@视频1</code> 原片 6.7–9.4s 片段：参考动作、运镜和剪辑节奏（只作参考，不复制画面）</li></ul><p class='muted'>首帧：参照原片第 3 镜首帧（shots/shot_003_first.jpg）的构图出图</p><p class='muted'>生成 4s 后剪到 2.8s（太短的镜头单独生成不稳定）</p><p class='muted'>另一条路：3D 工程。让 LLM 写 Blender 脚本或 Three.js 场景，角色/道具建模一次、按镜头设机位渲染，多角度和角色一致性最好，改文案和镜头也只是改代码（R08）</p><pre class='prompt' style='white-space:pre-wrap'>横屏 16:9；夜景/弱光环境光，没有专门补光，柔光（明暗过渡宽），中性（约 5000K），背景明显虚化（浅景深/人像模式）。人物以 @图片1 为准。参考 @视频1 的动作、运镜和剪辑节奏。
+（缺提示词：开 --vlm 或 agent 看图补写）</pre><h4>G4 · 3D 渲染 · 镜头 #5 · 15.2–22.6s（7.5s）</h4><ul><li><code>@图片1</code> 人物参考图（每个角色一张正脸 + 半身），保证跨镜头长相一致</li><li><code>@视频1</code> 原片 15.2–22.6s 片段：参考动作、运镜和剪辑节奏（只作参考，不复制画面）</li></ul><p class='muted'>首帧：参照原片第 5 镜首帧（shots/shot_005_first.jpg）的构图出图</p><p class='muted'>另一条路：3D 工程。让 LLM 写 Blender 脚本或 Three.js 场景，角色/道具建模一次、按镜头设机位渲染，多角度和角色一致性最好，改文案和镜头也只是改代码（R08）</p><pre class='prompt' style='white-space:pre-wrap'>横屏 16:9；夜景/弱光环境光，没有专门补光，柔光（明暗过渡宽），中性（约 5000K），背景明显虚化（浅景深/人像模式）。人物以 @图片1 为准。参考 @视频1 的动作、运镜和剪辑节奏。
+（缺提示词：开 --vlm 或 agent 看图补写）</pre><h4>G5 · AI 生成视频 · 镜头 #6 · 22.6–33.6s（10.9s）</h4><ul><li><code>@图片1</code> 人物参考图（每个角色一张正脸 + 半身），保证跨镜头长相一致</li><li><code>@视频1</code> 原片 22.6–33.6s 片段：参考动作、运镜和剪辑节奏（只作参考，不复制画面）</li></ul><p class='muted'>首帧用 G4 的尾帧，接上动作（S05）</p><pre class='prompt' style='white-space:pre-wrap'>横屏 16:9；夜景/弱光环境光，没有专门补光，柔光（明暗过渡宽），中性（约 5000K），背景明显虚化（浅景深/人像模式）。人物以 @图片1 为准。参考 @视频1 的动作、运镜和剪辑节奏。
+（缺提示词：开 --vlm 或 agent 看图补写）</pre><h4>G6 · AI 生成视频 · 镜头 #7、#8、#9 · 33.6–38.8s（5.3s）</h4><ul><li><code>@图片1</code> 人物参考图（每个角色一张正脸 + 半身），保证跨镜头长相一致</li><li><code>@视频1</code> 原片 33.6–38.8s 片段：参考动作、运镜和剪辑节奏（只作参考，不复制画面）</li></ul><p class='muted'>首帧：参照原片第 7 镜首帧（shots/shot_007_first.jpg）的构图出图</p><pre class='prompt' style='white-space:pre-wrap'>横屏 16:9；夜景/弱光环境光，没有专门补光，柔光（明暗过渡宽），中性（约 5000K），背景明显虚化（浅景深/人像模式）。人物以 @图片1 为准。参考 @视频1 的动作、运镜和剪辑节奏。镜头之间硬切。
+镜头1（0.0–2.6s）：（缺提示词：开 --vlm 或 agent 看图补写）
+镜头2（2.6–3.8s）：（缺提示词：开 --vlm 或 agent 看图补写）
+镜头3（3.8–5.3s）：（缺提示词：开 --vlm 或 agent 看图补写）</pre><h4>G7 · AI 生成视频 · 镜头 #11、#12、#13 · 44.0–48.9s（4.9s）</h4><ul><li><code>@图片1</code> 人物参考图（每个角色一张正脸 + 半身），保证跨镜头长相一致</li><li><code>@视频1</code> 原片 44.0–48.9s 片段：参考动作、运镜和剪辑节奏（只作参考，不复制画面）</li></ul><p class='muted'>首帧：参照原片第 11 镜首帧（shots/shot_011_first.jpg）的构图出图</p><pre class='prompt' style='white-space:pre-wrap'>横屏 16:9；夜景/弱光环境光，没有专门补光，柔光（明暗过渡宽），中性（约 5000K），背景明显虚化（浅景深/人像模式）。人物以 @图片1 为准。参考 @视频1 的动作、运镜和剪辑节奏。镜头之间硬切。
+镜头1（0.0–1.2s）：（缺提示词：开 --vlm 或 agent 看图补写）
+镜头2（1.2–3.5s）：（缺提示词：开 --vlm 或 agent 看图补写）
+镜头3（3.5–4.9s）：（缺提示词：开 --vlm 或 agent 看图补写）</pre><h4>段1 代码合成：镜头 #4（5.7s）</h4><h4>段2 代码合成：镜头 #10（5.2s）</h4><h4>段3 代码合成：镜头 #14、#15（74.0s）</h4></section>
+<section class='shot'><h3 style='margin:4px 0'>拍法、打光与剪辑</h3><ul><li>取景：景别 特写 66%、大特写 17%、中景 10%；主体是人脸（按脸高算景别）</li><li>机位：固定机位（三脚架/支架/放在桌上） 51%、移动机位（稳定器/手持平移） 49%；常见运镜 推</li><li>打光：夜景/弱光环境光，没有专门补光。主光 画面右侧偏前方，与主体同高；光比 约 2.3:1（相差 1.2 档）；柔光（明暗过渡宽）；色温中性（约 5000K）；背景明显虚化（浅景深/人像模式）</li><li>（画面不是实拍：以上是画面里的光影，用于写生成提示词，不是拍摄方案）</li><li>调色：暗调低饱和（电影感）；饱和度正常、对比正常、黑位正常、整体偏冷</li><li>剪辑：每分钟 6.8 刀，平均镜头 8.19s；没有实拍镜头</li></ul><table style='width:100%;font-size:13px;border-collapse:collapse'><tr><td>取景</td><td>景别</td><td>特写</td><td class='muted'>测量：特写</td></tr><tr><td>机位</td><td>拍摄方式</td><td>混合：固定机位（三脚架/支架/放在桌上） 51%、移动机位（稳定器/手持平移） 49%</td><td class='muted'>测量：混合：固定机位（三脚架/支架/放在桌上） 51%、移动机位（稳定器/手持平移） 49%</td></tr><tr><td>打光</td><td>软硬</td><td>柔光（明暗过渡宽）</td><td class='muted'>测量：柔光（明暗过渡宽）</td></tr><tr><td>打光</td><td>色温</td><td>中性（约 5000K）</td><td class='muted'>测量：中性（约 5000K）</td></tr><tr><td>调色</td><td>调色风格</td><td>暗调低饱和（电影感）</td><td class='muted'>测量：暗调低饱和（电影感）</td></tr></table></section>
+<section class='shot'><h3 style='margin:4px 0'>声音</h3><p><b>视频类型：旁白/口播 + 配乐 → 人声TTS 配音；音效音效库/剪辑软件后期添加（倾向，待确认）</b></p><div>原声：<audio controls preload='none' src='stems/original.wav'></audio></div><div>人声干声：<audio controls preload='none' src='stems/vocals.wav'></audio></div><div>配乐 + 环境声：<audio controls preload='none' src='stems/music.wav'></audio></div><img class='sb' src='audio.png' onerror="this.remove()"></section>
+<section class='shot'><h3 style='margin:4px 0'>剪辑包装层</h3><p>音效卡点：切镜 2 处</p><p class='muted'><a href='packaging/timeline.json'>packaging/timeline.json</a></p></section>
+
+<section class="shot">
+  <div class="head"><span class="badge" style="background:rgb(217,70,239)">AI 生成视频 40%</span>
+  <b>#1</b> 00:00.000–00:03.833 · 3.83s · AI 生成视频 + 代码/剪辑叠加（图形贴片）
+  </div>
+  <img src="shots/shot_001.jpg" loading="lazy">
+  <div class="cols"><div><h4>证据</h4><ul><li>低照度画面：76% 的区域接近全黑但带颗粒（不是纯色底），亮部平坦块只有 6%、且有人脸：平坦块/少色是暗部被压缩造成的，不按渲染特征算</li><li>纹理呈照片/视频特征：噪声 σ=0.09、用色 53 种、平坦块 34%</li><li>经过平台二次转码（Douyin/TikTok），传感器噪声被压没了：噪声类证据失效，实拍还是 AI 主要看帧率和画面内容</li><li>100% 的采样帧有正脸且机位固定，音轨有人声</li></ul></div>
+  <div><h4>画面</h4><p>—</p><h4>复刻</h4><p>R07-product-hero → capsule_cinema<br>原片为 AI 生成：取原镜头首尾帧做首尾帧生成，可高度还原构图与动作；换主体时先用图像模型改首帧</p>
+  </div></div>
+</section>
+<section class="shot">
+  <div class="head"><span class="badge" style="background:rgb(14,165,233)">3D 渲染 70%</span>
+  <b>#2</b> 00:03.833–00:06.667 · 2.83s · 3D 渲染 + 代码/剪辑叠加（图形贴片）
+  </div>
+  <img src="shots/shot_002.jpg" loading="lazy">
+  <div class="cols"><div><h4>证据</h4><ul><li>纹理呈渲染特征：平坦色块 44%、95% 像素仅用 36 种颜色、横竖直边 37%</li><li>经过平台二次转码（Douyin/TikTok），传感器噪声被压没了：噪声类证据失效，实拍还是 AI 主要看帧率和画面内容</li></ul></div>
+  <div><h4>画面</h4><p>—</p><h4>复刻</h4><p>R08-product-multiview → capsule_cinema<br>3D 渲染：可用首尾帧 AI 生成近似；需要精确多角度时走 3D 建模 + Blender 渲染</p>
+  </div></div>
+</section>
+<section class="shot">
+  <div class="head"><span class="badge" style="background:rgb(14,165,233)">3D 渲染 66%</span>
+  <b>#3</b> 00:06.667–00:09.433 · 2.77s · 3D 渲染 + 代码/剪辑叠加（图形贴片）
+  </div>
+  <img src="shots/shot_003.jpg" loading="lazy">
+  <div class="cols"><div><h4>证据</h4><ul><li>纹理呈渲染特征：平坦色块 39%、95% 像素仅用 40 种颜色、横竖直边 33%</li><li>经过平台二次转码（Douyin/TikTok），传感器噪声被压没了：噪声类证据失效，实拍还是 AI 主要看帧率和画面内容</li></ul></div>
+  <div><h4>画面</h4><p>—</p><h4>复刻</h4><p>R08-product-multiview → capsule_cinema<br>3D 渲染：可用首尾帧 AI 生成近似；需要精确多角度时走 3D 建模 + Blender 渲染</p>
+  </div></div>
+</section>
+<section class="shot">
+  <div class="head"><span class="badge" style="background:rgb(245,158,11)">代码/模板渲染 74%</span>
+  <b>#4</b> 00:09.433–00:15.167 · 5.73s · 代码/模板渲染
+  </div>
+  <img src="shots/shot_004.jpg" loading="lazy">
+  <div class="cols"><div><h4>证据</h4><ul><li>纹理呈渲染特征：平坦色块 73%、95% 像素仅用 6 种颜色、横竖直边 20%</li><li>背景 98% 像素逐帧完全不变、只有局部元素在动：2D 合成/代码动效特征</li><li>经过平台二次转码（Douyin/TikTok），传感器噪声被压没了：噪声类证据失效，实拍还是 AI 主要看帧率和画面内容</li></ul></div>
+  <div><h4>画面</h4><p>—</p><h4>复刻</h4><p>R01-code-graphics → code_render_spec<br>代码渲染：用 Remotion/HTML 按文字轨与版式重建，100% 可控，不需要生成模型</p>
+  </div></div>
+</section>
+<section class="shot">
+  <div class="head"><span class="badge" style="background:rgb(14,165,233)">3D 渲染 51%</span>
+  <b>#5</b> 00:15.167–00:22.633 · 7.47s · 3D 渲染 + 代码/剪辑叠加（图形贴片）
+  </div>
+  <img src="shots/shot_005.jpg" loading="lazy">
+  <div class="cols"><div><h4>证据</h4><ul><li>纹理呈渲染特征：平坦色块 57%、95% 像素仅用 26 种颜色、横竖直边 35%</li><li>经过平台二次转码（Douyin/TikTok），传感器噪声被压没了：噪声类证据失效，实拍还是 AI 主要看帧率和画面内容</li><li>100% 的采样帧有正脸且机位固定，音轨有人声</li></ul></div>
+  <div><h4>画面</h4><p>—</p><h4>复刻</h4><p>R08-product-multiview → capsule_cinema<br>3D 渲染：可用首尾帧 AI 生成近似；需要精确多角度时走 3D 建模 + Blender 渲染</p>
+  </div></div>
+</section>
+<section class="shot">
+  <div class="head"><span class="badge" style="background:rgb(217,70,239)">AI 生成视频 41%</span>
+  <b>#6</b> 00:22.633–00:33.567 · 10.93s · AI 生成视频
+  </div>
+  <img src="shots/shot_006.jpg" loading="lazy">
+  <div class="cols"><div><h4>证据</h4><ul><li>低照度画面：70% 的区域接近全黑但带颗粒（不是纯色底），亮部平坦块只有 11%、且有人脸：平坦块/少色是暗部被压缩造成的，不按渲染特征算</li><li>纹理呈照片/视频特征：噪声 σ=0.10、用色 46 种、平坦块 35%</li><li>经过平台二次转码（Douyin/TikTok），传感器噪声被压没了：噪声类证据失效，实拍还是 AI 主要看帧率和画面内容</li></ul></div>
+  <div><h4>画面</h4><p>—</p><h4>复刻</h4><p>R07-product-hero → capsule_cinema<br>原片为 AI 生成：取原镜头首尾帧做首尾帧生成，可高度还原构图与动作；换主体时先用图像模型改首帧</p>
+  </div></div>
+</section>
+<section class="shot">
+  <div class="head"><span class="badge" style="background:rgb(217,70,239)">AI 生成视频 70%</span>
+  <b>#7</b> 00:33.567–00:36.200 · 2.63s · AI 生成视频
+  </div>
+  <img src="shots/shot_007.jpg" loading="lazy">
+  <div class="cols"><div><h4>证据</h4><ul><li>纹理呈照片/视频特征：噪声 σ=0.26、用色 137 种、平坦块 8%</li><li>重复帧呈 24→30 规律（19%，周期 4）：原始素材为 24/25fps 后转码，常见于 AI 生成视频、3D/动画渲染或电影素材</li></ul></div>
+  <div><h4>画面</h4><p>—</p><h4>复刻</h4><p>R07-product-hero → capsule_cinema<br>原片为 AI 生成：取原镜头首尾帧做首尾帧生成，可高度还原构图与动作；换主体时先用图像模型改首帧</p>
+  </div></div>
+</section>
+<section class="shot">
+  <div class="head"><span class="badge" style="background:rgb(217,70,239)">AI 生成视频 70%</span>
+  <b>#8</b> 00:36.200–00:37.333 · 1.13s · AI 生成视频 + 代码/剪辑叠加（图形贴片）
+  </div>
+  <img src="shots/shot_008.jpg" loading="lazy">
+  <div class="cols"><div><h4>证据</h4><ul><li>纹理呈照片/视频特征：噪声 σ=0.33、用色 144 种、平坦块 4%</li><li>重复帧呈 24→30 规律（21%，周期 4）：原始素材为 24/25fps 后转码，常见于 AI 生成视频、3D/动画渲染或电影素材</li></ul></div>
+  <div><h4>画面</h4><p>—</p><h4>复刻</h4><p>R07-product-hero → capsule_cinema<br>原片为 AI 生成：取原镜头首尾帧做首尾帧生成，可高度还原构图与动作；换主体时先用图像模型改首帧</p>
+  </div></div>
+</section>
+<section class="shot">
+  <div class="head"><span class="badge" style="background:rgb(217,70,239)">AI 生成视频 70%</span>
+  <b>#9</b> 00:37.333–00:38.833 · 1.50s · AI 生成视频 + 代码/剪辑叠加（图形贴片）
+  </div>
+  <img src="shots/shot_009.jpg" loading="lazy">
+  <div class="cols"><div><h4>证据</h4><ul><li>低照度画面：21% 的区域接近全黑但带颗粒（不是纯色底），亮部平坦块只有 2%、且有人脸：平坦块/少色是暗部被压缩造成的，不按渲染特征算</li><li>纹理呈照片/视频特征：噪声 σ=0.41、用色 131 种、平坦块 4%</li><li>重复帧呈 24→30 规律（18%，周期 4）：原始素材为 24/25fps 后转码，常见于 AI 生成视频、3D/动画渲染或电影素材</li></ul></div>
+  <div><h4>画面</h4><p>—</p><h4>复刻</h4><p>R07-product-hero → capsule_cinema<br>原片为 AI 生成：取原镜头首尾帧做首尾帧生成，可高度还原构图与动作；换主体时先用图像模型改首帧</p>
+  </div></div>
+</section>
+<section class="shot">
+  <div class="head"><span class="badge" style="background:rgb(245,158,11)">代码/模板渲染 73%</span>
+  <b>#10</b> 00:38.833–00:44.033 · 5.20s · 代码/模板渲染
+  </div>
+  <img src="shots/shot_010.jpg" loading="lazy">
+  <div class="cols"><div><h4>证据</h4><ul><li>58% 的相邻帧完全重复，只有局部元素在动（典型的模板/MG 动画或定格后局部动效）</li><li>纹理呈渲染特征：平坦色块 68%、95% 像素仅用 8 种颜色、横竖直边 33%</li><li>平坦底色上有大量细小高频细节（小字号文字/界面），像截图或文档画面</li><li>背景 98% 像素逐帧完全不变、只有局部元素在动：2D 合成/代码动效特征</li><li>重复帧呈 24→60 规律（58%，周期 1）：原始素材为 24/25fps 后转码，常见于 AI 生成视频、3D/动画渲染或电影素材</li></ul></div>
+  <div><h4>画面</h4><p>—</p><h4>复刻</h4><p>R01-code-graphics → code_render_spec<br>代码渲染：用 Remotion/HTML 按文字轨与版式重建，100% 可控，不需要生成模型</p>
+  </div></div>
+</section>
+<section class="shot">
+  <div class="head"><span class="badge" style="background:rgb(217,70,239)">AI 生成视频 37%</span>
+  <b>#11</b> 00:44.033–00:45.233 · 1.20s · AI 生成视频 + 代码/剪辑叠加（图形贴片）
+  </div>
+  <img src="shots/shot_011.jpg" loading="lazy">
+  <div class="cols"><div><h4>证据</h4><ul><li>低照度画面：41% 的区域接近全黑但带颗粒（不是纯色底），亮部平坦块只有 4%、且有人脸：平坦块/少色是暗部被压缩造成的，不按渲染特征算</li><li>纹理呈照片/视频特征：噪声 σ=0.20、用色 123 种、平坦块 15%</li><li>经过平台二次转码（Douyin/TikTok），传感器噪声被压没了：噪声类证据失效，实拍还是 AI 主要看帧率和画面内容</li></ul></div>
+  <div><h4>画面</h4><p>—</p><h4>复刻</h4><p>R07-product-hero → capsule_cinema<br>原片为 AI 生成：取原镜头首尾帧做首尾帧生成，可高度还原构图与动作；换主体时先用图像模型改首帧</p>
+  </div></div>
+</section>
+<section class="shot">
+  <div class="head"><span class="badge" style="background:rgb(217,70,239)">AI 生成视频 70%</span>
+  <b>#12</b> 00:45.233–00:47.567 · 2.33s · AI 生成视频 + 代码/剪辑叠加（图形贴片）
+  </div>
+  <img src="shots/shot_012.jpg" loading="lazy">
+  <div class="cols"><div><h4>证据</h4><ul><li>低照度画面：44% 的区域接近全黑但带颗粒（不是纯色底），亮部平坦块只有 2%、且有人脸：平坦块/少色是暗部被压缩造成的，不按渲染特征算</li><li>纹理呈照片/视频特征：噪声 σ=0.17、用色 132 种、平坦块 24%</li><li>重复帧呈 24→30 规律（12%，周期 6）：原始素材为 24/25fps 后转码，常见于 AI 生成视频、3D/动画渲染或电影素材</li></ul></div>
+  <div><h4>画面</h4><p>—</p><h4>复刻</h4><p>R07-product-hero → capsule_cinema<br>原片为 AI 生成：取原镜头首尾帧做首尾帧生成，可高度还原构图与动作；换主体时先用图像模型改首帧</p>
+  </div></div>
+</section>
+<section class="shot">
+  <div class="head"><span class="badge" style="background:rgb(217,70,239)">AI 生成视频 35%</span>
+  <b>#13</b> 00:47.567–00:48.900 · 1.33s · AI 生成视频 + 代码/剪辑叠加（图形贴片）
+  </div>
+  <img src="shots/shot_013.jpg" loading="lazy">
+  <div class="cols"><div><h4>证据</h4><ul><li>低照度画面：38% 的区域接近全黑但带颗粒（不是纯色底），亮部平坦块只有 9%、且有人脸：平坦块/少色是暗部被压缩造成的，不按渲染特征算</li><li>纹理呈照片/视频特征：噪声 σ=0.20、用色 116 种、平坦块 15%</li><li>经过平台二次转码（Douyin/TikTok），传感器噪声被压没了：噪声类证据失效，实拍还是 AI 主要看帧率和画面内容</li><li>100% 的采样帧有正脸且机位固定，音轨有人声</li></ul></div>
+  <div><h4>画面</h4><p>—</p><h4>复刻</h4><p>R07-product-hero → capsule_cinema<br>原片为 AI 生成：取原镜头首尾帧做首尾帧生成，可高度还原构图与动作；换主体时先用图像模型改首帧</p>
+  </div></div>
+</section>
+<section class="shot">
+  <div class="head"><span class="badge" style="background:rgb(245,158,11)">代码/模板渲染 42%</span>
+  <b>#14</b> 00:48.900–01:04.667 · 15.77s · 代码/模板渲染
+  </div>
+  <img src="shots/shot_014.jpg" loading="lazy">
+  <div class="cols"><div><h4>证据</h4><ul><li>纹理呈渲染特征：平坦色块 63%、95% 像素仅用 17 种颜色、横竖直边 17%</li><li>经过平台二次转码（Douyin/TikTok），传感器噪声被压没了：噪声类证据失效，实拍还是 AI 主要看帧率和画面内容</li><li>83% 的采样帧有正脸且机位固定，音轨有人声</li></ul></div>
+  <div><h4>画面</h4><p>—</p><h4>复刻</h4><p>R01-code-graphics → code_render_spec<br>代码渲染：用 Remotion/HTML 按文字轨与版式重建，100% 可控，不需要生成模型</p>
+  </div></div>
+</section>
+<section class="shot">
+  <div class="head"><span class="badge" style="background:rgb(245,158,11)">代码/模板渲染 73%</span>
+  <b>#15</b> 01:04.667–02:02.900 · 58.23s · 代码/模板渲染
+  </div>
+  <img src="shots/shot_015.jpg" loading="lazy">
+  <div class="cols"><div><h4>证据</h4><ul><li>纹理呈渲染特征：平坦色块 65%、95% 像素仅用 8 种颜色、横竖直边 19%</li><li>背景 98% 像素逐帧完全不变、只有局部元素在动：2D 合成/代码动效特征</li><li>经过平台二次转码（Douyin/TikTok），传感器噪声被压没了：噪声类证据失效，实拍还是 AI 主要看帧率和画面内容</li></ul></div>
+  <div><h4>画面</h4><p>—</p><h4>复刻</h4><p>R01-code-graphics → code_render_spec<br>代码渲染：用 Remotion/HTML 按文字轨与版式重建，100% 可控，不需要生成模型</p>
+  </div></div>
+</section>
+</main></body></html>
