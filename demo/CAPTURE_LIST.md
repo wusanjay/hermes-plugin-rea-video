@@ -15,11 +15,11 @@
 |---|---|---|---|---|
 | A1 | **完整端到端真实运行**：从输入命令到报告生成，全程不剪 | 全跑完（约 10 分钟） | ★★★ | 最重要的保险素材。有它我才能自由挑 3 秒还是 15 秒 |
 | A2 | 命令粘贴 → 回车 → 工具调用行出现 | 各 3 秒 | ★★★ | 特写，可反复录 |
-| A3 | Hermes 做"看图复核"的那段（调用 shot_tiles / submit_review） | 20 秒 | ★★★ | **全片最值 20 秒**：证明 agent 自己在核对，不是跑脚本 |
+| A3 | **看图复核的最佳演示样本 = 实拍开箱带货 `unboxing.mp4`**：裸工具结论只有 51% AI + 47% 实拍、置信度 0.468、**93% 时长标着「实拍还是 AI 待确认」**，29 镜全待复核——恰好演示「工具承认不确定 → agent 看图 → 纠正为实拍为主」。录 Hermes 复核它的那段（调用 shot_tiles / submit_review） | 30 秒（现场跑约 3–6 分钟，等待后期剪掉） | ★★★ | **全片最值镜头**：比 Keaton 那条更有说服力，因为它展示了复核真的改变了结论。命令：`hermes -z "用 rea-video 插件拆解 /Users/mac/Documents/workspace/github/rea-video/docs/cases/videos/unboxing.mp4，低置信镜头请自己看图复核后再给结论"` |
 | A4 | `report.html` 从顶滚到底（慢速，每节停 2 秒） | 1 条完整 | ★★★ | 滚动版一条 + 下面分段各一条 |
 | A5 | 报告分段特写：① 一句话结论 ② 逐镜表 ③ 字幕时间轴 ④ 复刻方案（含提示词） | 各 5 秒 | ★★★ | 剪辑用 |
 | A6 | `storyboard.jpg` 全屏展示 | 8 秒 | ★★★ | 分镜总览图，最抓眼 |
-| A7 | **多类型证明**（防"只会拆抖音口播"的质疑）——依次打开这 4 条的结果屏：3D 科普片 / AI 音乐 MV / 代码动效宣传片 / 实拍带货 | 每条 4 秒 | ★★☆ | 素材现成：`rea-video/docs/cases/videos/` 下 `salted_egg.mp4`、`qing_mv.mp4`、`v10_oiioii_gen_coding_first.mp4`、`unboxing.mp4`。**可预先各跑一次存好报告，录制时只翻结果**，不必现场等 |
+| A7 | **多类型证明（只展示这两条，结论稳）**：代码动效产品宣传片 78% 模板渲染（置信高，仅 4 镜待复核）、3D 科普片 97% 3D 渲染（17 镜待复核但方向正确） | 每条 5 秒 | ★★☆ | 报告已预跑好：`~/Movies/demo_raw_prerun/v10_oiioii_gen_coding_first/report.html`、`~/Movies/demo_raw_prerun/salted_egg/report.html`。**不要展示 qing_mv 和 unboxing 的裸结论**（见 A11） |
 | A8 | `hermes mcp list` 显示 6/6 tools enabled（"一条命令装好"的佐证） | 5 秒 | ★★☆ | 顺便截 README 图 |
 | A9 | GitHub 仓库页 README 首屏 | 5 秒 | ★★☆ | 顺便截 README 图 |
 | A10 | 空镜兜底：终端空闲画面 30 秒 | 30 秒 | ★☆☆ | 垫底用，防转场不够 |
