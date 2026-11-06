@@ -1,3 +1,4 @@
+<!-- ⚠️ 本文件已被 NARRATION_FINAL.md 取代（旧稿仍含口头致谢、缺复核高光段）。录制请只看 NARRATION_FINAL.md + CAPTURE_LIST.md -->
 # 口播录制脚本 · hermes-plugin-rea-video demo
 
 > 成片目标：**55–70 秒**。录一次约 15 分钟，剪辑再花 30 分钟。
