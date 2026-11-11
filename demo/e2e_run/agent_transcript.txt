@@ -1,0 +1,7 @@
+Done. Five-line summary:
+
+1. Production mix: AI video 42% (26.7s) + code/template render 39% (24.9s) + still-image zoom/pan 13% + static hold 6%; 16 shots, confidence 0.636.
+2. Reviewed shot_012 (32.23–39.63s, the most disputed: ai_video 0.45 vs static_hold 0.29).
+3. Tiles show a frozen photo-grid collage with text banners and only a real-person talking-head inset moving → verdict: code_render 0.5 (composite, not AI video); merged into the breakdown (1/16 reviewed, 0 label flips due to fusion weighting).
+4. Report: /tmp/rea-e2e/report.html (also report.md, breakdown.json, storyboard.jpg, stems/).
+5. Note: shots #1, #2, #16 remain "AI vs 24p live-action" uncertain — would need per-shot review or a VLM pass to settle.
