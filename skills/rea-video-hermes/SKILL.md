@@ -1,5 +1,5 @@
 ---
-name: rea_video_hermes
+name: rea-video-hermes
 description: 拆解任意视频的制作方式（实拍/AI/3D/录屏逐镜判断、字幕花字时间轴、复刻方案）。用户给出视频链接或文件、问"这条视频怎么做的/是不是AI/怎么复刻"时使用。
 ---
 

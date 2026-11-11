@@ -1,0 +1,10 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "rea-video-hermes",
+  "version": "0.1.0",
+  "description": "Shot-by-shot video reverse-engineering powered by JuneYaooo/rea-video: per-shot production-method classification (live action / AI video / 3D / screen capture / code render), caption and sticker timelines, voice/music stems, editing rhythm, and an agent-as-VLM review loop for low-confidence shots. No external VLM key required.",
+  "author": { "name": "wusanjay", "url": "https://github.com/wusanjay" },
+  "repository": "https://github.com/wusanjay/hermes-plugin-rea-video",
+  "license": "MIT",
+  "keywords": ["video", "forensics", "mcp", "douyin", "ai-detection", "shot-detection"]
+}
