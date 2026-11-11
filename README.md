@@ -3,9 +3,18 @@
 **给 Hermes Agent 装上视频逆向能力**：丢一条视频（或抖音链接），Hermes 逐镜告诉你
 实拍 / AI 生成 / 3D / 录屏各占多少、字幕花字的时间轴、声音是不是 AI、以及怎么复刻一条一样的。
 
+<video src="assets/demo_hackathon_final.mp4" controls width="100%"></video>
+
+*Demo：让 Hermes 当面拆解一条视频 → 逐镜判定 → 对低置信镜头亲自看图复核。*
+
+![tool 51% AI vs agent review 97% real — 融合复核证据](demo/evidence_compare.png)
+
+**端到端实测（2026-11-11）**：63 秒真实视频走完整循环——16 镜分解（AI 42% / 模板渲染 39% / 静图 13%），agent 复核最争议镜头（ai_video 0.45 vs static_hold 0.29）后判 code_render 并回写融合。证据：[demo/e2e_run/](demo/e2e_run/)（report.md · breakdown.json · storyboard · agent transcript）。
+
 > Powered by [JuneYaooo/rea-video](https://github.com/JuneYaooo/rea-video) (Apache-2.0) —
 > 本仓库只是 Hermes 插件封装（MCP server + skill），全部核心能力来自上游工具，依赖钉死在
 > commit `d904b1e8328515dc95d9772cd2e65fb8acde996d`（Apache-2.0 第 9 条不可撤回，上游任何后续变化不影响本插件）。
+> 上游贡献：shot 复核的 `split_suggestion` 与 disputed-review 融合规则由本仓库维护者的 PR 已合入上游。
 
 ## 架构
 
