@@ -3,7 +3,7 @@
 **给 Hermes Agent 装上视频逆向能力**：丢一条视频（或抖音链接），Hermes 逐镜告诉你
 实拍 / AI 生成 / 3D / 录屏各占多少、字幕花字的时间轴、声音是不是 AI、以及怎么复刻一条一样的。
 
-<video src="assets/demo_hackathon_final.mp4" controls width="100%"></video>
+<video src="https://github.com/wusanjay/hermes-plugin-rea-video/releases/download/v0.1.0/demo_hackathon_final.mp4" controls width="100%"></video>
 
 *Demo：让 Hermes 当面拆解一条视频 → 逐镜判定 → 对低置信镜头亲自看图复核。*
 

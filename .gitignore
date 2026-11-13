@@ -3,3 +3,5 @@ __pycache__/
 out/
 *.pyc
 .env
+assets/*.mp4
+.DS_Store
