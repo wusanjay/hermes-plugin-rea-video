@@ -29,8 +29,34 @@ from urllib.parse import urlparse
 mcp = FastMCP("rea-video")
 REA = [sys.executable, "-m", "rea_video"]  # or the installed `rea-video` entry point
 
-OUT_ROOT = Path(os.environ.get("REA_OUT_ROOT", str(Path.home() / "rea-video-out"))).expanduser().resolve()
-OUT_ROOT.mkdir(parents=True, exist_ok=True)
+_OUT_ROOT: Path | None = None
+
+
+def _out_root() -> Path:
+    """Resolve REA_OUT_ROOT lazily; fall back to ~/rea-video-out if unusable.
+
+    Hermes expands ${PLUGIN_DATA} in mcp.json env values to the plugin's own
+    data folder; a raw unexpanded value or an unwritable path falls back so the
+    server still starts for anyone."""
+    global _OUT_ROOT
+    if _OUT_ROOT is not None:
+        return _OUT_ROOT
+    raw = os.environ.get("REA_OUT_ROOT", str(Path.home() / "rea-video-out"))
+    try:
+        p = Path(raw).expanduser()
+        if "${" in str(p):
+            raise ValueError("unexpanded template")
+        p = p.resolve()
+        p.mkdir(parents=True, exist_ok=True)
+        probe = p / ".probe"
+        probe.write_text("ok", encoding="utf-8")
+        probe.unlink()
+        _OUT_ROOT = p
+    except Exception:
+        fb = Path.home() / "rea-video-out"
+        fb.mkdir(parents=True, exist_ok=True)
+        _OUT_ROOT = fb
+    return _OUT_ROOT
 
 UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Chrome/126.0 Safari/537.36"
 RESOLVE_HOSTS = {"v.douyin.com", "www.douyin.com", "douyin.com"}
@@ -49,13 +75,14 @@ def _require_allowed_url(url: str, *, cdn: bool = False) -> None:
 
 
 def _safe_out(p: str, *, must_not_exist: bool = True) -> Path:
-    """Confine a model-supplied output path under OUT_ROOT; never overwrite."""
+    """Confine a model-supplied output path under the output root; never overwrite."""
+    root = _out_root()
     q = Path(p).expanduser()
     if not q.is_absolute():
-        q = OUT_ROOT / q
+        q = root / q
     q = q.resolve()
-    if q != OUT_ROOT and OUT_ROOT not in q.parents:
-        raise ValueError(f"输出路径必须在 {OUT_ROOT} 之下，收到：{p}")
+    if q != root and root not in q.parents:
+        raise ValueError(f"输出路径必须在 {root} 之下，收到：{p}")
     if must_not_exist and q.exists():
         raise ValueError(f"目标已存在，拒绝覆盖：{q}")
     q.parent.mkdir(parents=True, exist_ok=True)
@@ -136,8 +163,9 @@ def submit_review(out_dir: str, answers: dict, reviewer: str = "hermes") -> str:
     """Write review_answers.json (label_probs/evidence/split_suggestion per shot) and merge
     into the breakdown — the agent-as-VLM loop. Then call video_summary again."""
     od = Path(_abs_input(out_dir, "out_dir")).resolve()
-    if od != OUT_ROOT and OUT_ROOT not in od.parents:
-        raise ValueError(f"out_dir 必须在 {OUT_ROOT} 之下：{out_dir}")
+    root = _out_root()
+    if od != root and root not in od.parents:
+        raise ValueError(f"out_dir 必须在 {root} 之下：{out_dir}")
     p = od / "review_answers.json"
     if p.exists():
         raise ValueError(f"review_answers.json 已存在，拒绝覆盖：{p}")
